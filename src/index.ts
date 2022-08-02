@@ -41,6 +41,26 @@ const maybeDoDingdingcall = async (_api: ApiPromise, activeEra: number) => {
             console.log(error);
         });
     }
+    let nowTime = new Date(Date.parse(new Date().toString()));
+    const hour = nowTime.getHours();
+    const minitus = nowTime.getMinutes();
+    console.log("hour", hour)
+    if(hour < 12 && hour >= 11 && minitus >= 0 && minitus <= 30) { 
+        const data = JSON.stringify({ "msgtype": "text", "text": { "content": `一切正常, offline count: ${offlineCount}, validator count: ${validatorCount}, validator offlineRate: ${offlineRate}` }, "at": { "atMobiles": "['validator]", "isAtAll": false } });
+        const config = {
+            method: 'post',
+            url: ddurl,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+        axios(config).then(function (response: { data: any; }) {
+            console.log(JSON.stringify(response.data));
+        }).catch(function (error: any) {
+            console.log(error);
+        });
+    }
 }
 
 const getNodeStatus = async () => {
