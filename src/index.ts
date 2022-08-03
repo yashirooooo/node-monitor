@@ -72,7 +72,7 @@ const getNodeStatus = async () => {
     if (currentEra < activeEra) {
         // 等待10分钟后再查询掉线状态
         currentEra = activeEra;
-        await sleep(60 * 1000 * 10);
+        await sleep(60 * 1000 * 15);
         await maybeDoDingdingcall(_api, activeEra)
     } else {
         await maybeDoDingdingcall(_api, activeEra)
