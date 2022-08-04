@@ -83,7 +83,7 @@ const getNodeStatus = async () => {
 const main = async () => {
     for (; ;) {
         await getNodeStatus();
-        await sleep(60 * 1000 * 20)
+        await sleep(60 * 1000 * 30)
     }
 }
 
